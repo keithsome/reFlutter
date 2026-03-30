@@ -1,6 +1,7 @@
 name: Build
 
 on:
+  push:
   pull_request:
     branches:
       - "*"
@@ -36,6 +37,7 @@ jobs:
           git reset --hard FETCH_HEAD
           reflutter -b ${{env.SNAPSHOT_HASH}}
           echo 'reflutter' > REFLUTTER
+          git checkout -b main
           git add . && git commit -am "reflutter"
           cd $ROOT_DIR
           mkdir customEngine
@@ -97,6 +99,7 @@ jobs:
           git reset --hard FETCH_HEAD
           reflutter -b ${{env.SNAPSHOT_HASH}} -p
           echo 'reflutter' > REFLUTTER
+          git checkout -b main
           git add . && git commit -am "reflutter"
           cd $ROOT_DIR
           mkdir customEngine
